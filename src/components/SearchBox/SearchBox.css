@@ -1,0 +1,38 @@
+.searc_box {
+  display: flex;
+  position: relative;
+}
+.search-box__form-input {
+  box-sizing: border-box;
+  display: block;
+  margin-top: 10px;
+  width: 350px;
+  font-size: 15px;
+  padding: 10px 5px;
+  /* border: 1px solid rgba(0, 8, 7, 0.5); */
+  outline: none;
+  transition: 0.3s ease;
+  border: none;
+}
+.sc {
+  width: 20px;
+  position: absolute;
+  right: 85px;
+  height: 20px;
+  transform: rotate(45deg);
+  display: inline-block;
+  background-color: black;
+  margin-top: 19px;
+  /* margin-left: -5px; */
+}
+.search-box__form-submit {
+  margin-top: 9px;
+  padding: 5px 10px 5px 10px;
+  border: none;
+  transition: all 0.2s ease;
+  color: #ffeedb;
+  background-color: rgba(0, 8, 7);
+  width: 100px;
+  margin-left: -15px;
+  font-size: 18px;
+}
