@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getSlideShowdata } from "../../state/actions";
+import { getSlideShowdata } from "../state/actions";
 import Slider from "react-slick";
 
 import "slick-carousel/slick/slick.css";
@@ -25,18 +25,11 @@ const SlideShow = () => {
     slidesToScroll: 1,
     autoplay: true,
     speed: 2000,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 4000,
     cssEase: "linear",
   };
   return (
     <div>
-      {/* <h1>Slide Show</h1>
-      <ul>
-        {(data).slice(0,5).map((slide) => (
-          <li key={slide.imdbID}>
-            {slide.Title} </li>
-        ))}
-      </ul> */}
       <Slider {...settings}>
         {data.slice(0,5).map((slide) => (
           <div key={slide.imdbID}>
