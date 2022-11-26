@@ -4,21 +4,22 @@ import { getSlideShowdata } from "../state/actions";
 import Slider from "react-slick";
 import { BsFillStarFill } from "react-icons/bs";
 
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import "../slider.css";
 
 const API_IMG = "https://image.tmdb.org/t/p/w500/";
 
 const SlideShow = () => {
-  const { data } = useSelector((state) => state.data);
+  const { slideShowdata } = useSelector((state) => state.data);
   const dispatch = useDispatch();
-  console.log(data);
   useEffect(() => {
     dispatch(getSlideShowdata());
   }, []);
 
   const settings = {
     dots: true,
+    className: "center",
+    centerMode: true,
+    centerPadding: "60px",
     infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -31,8 +32,11 @@ const SlideShow = () => {
   return (
     <div>
       <Slider {...settings}>
-        {data.slice(0, 6).map((slide) => (
-          <div key={slide.imdbID} className="bg-[#040303] !flex gap-32 justify-center p-8 pb-16">
+        {slideShowdata.map((slide) => (
+          <div
+            key={slide.genre_ids[0]}
+            className="mt-16 bg-[#151312]  !flex gap-32 justify-center p-8 pb-16 max-w-7xl mx-auto mb-4"
+          >
             <img
               className="w-70 h-[400px] inline-block mt-10"
               src={API_IMG + slide.poster_path}
@@ -50,14 +54,15 @@ const SlideShow = () => {
                 </div>
               </div>
               <div className="flex gap-2 text-lightgrey text-xl mt-5">
-                <p>{slide.release_date}</p> |
-                <p>{slide.vote_count}</p> |
+                <p>{slide.release_date}</p> |<p>{slide.vote_count}</p> |
                 <p>{slide.original_language}</p>
               </div>
 
               <div className="mt-8">
-                <p className="!inline border-solid border-b-4 border-red-500 text-2xl pb-2">Overview</p>
-                <p className="mt-5 text-xl">{slide.overview}</p>
+                <p className="!inline border-solid border-b-4 border-red-500 text-2xl pb-2">
+                  Overview
+                </p>
+                <p className="mt-5 text-xl w-[700px]">{slide.overview}</p>
               </div>
             </div>
           </div>

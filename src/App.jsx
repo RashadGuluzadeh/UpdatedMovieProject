@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import reactLogo from './assets/react.svg'
 // import './App.css'
-import MainPage from './pages/MainPage/MainPage'
+import MainPage from './pages/MainPage'
 
 import "./reset.css"
 
