@@ -10,6 +10,7 @@ const API_IMG = "https://image.tmdb.org/t/p/w500/";
 
 const SlideShow = () => {
   const { slideShowdata } = useSelector((state) => state.data);
+  console.log(slideShowdata)
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getSlideShowdata());
@@ -62,7 +63,7 @@ const SlideShow = () => {
                 <p className="!inline border-solid border-b-4 border-red-500 text-2xl pb-2">
                   Overview
                 </p>
-                <p className="mt-5 text-xl w-[700px]">{slide.overview}</p>
+                <p className="mt-5 text-xl w-[650px]">{slide.overview}</p>
               </div>
             </div>
           </div>
