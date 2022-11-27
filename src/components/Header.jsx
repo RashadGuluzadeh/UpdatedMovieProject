@@ -1,21 +1,10 @@
 import React, { useState } from "react";
 import SearchBox from "./SearchBox/";
-import { BsFillBookmarkHeartFill  } from "react-icons/bs";
-import { useDispatch, useSelector } from "react-redux";
-import { removeListMovie } from "../state/actions";
-import Favorites from "./Favorites";
+import { BsFillBookmarkHeartFill } from "react-icons/bs";
+import { useSelector } from "react-redux";
 
-const Header = () => {
-  const [menuClass, SetMenuClass] = useState("menu hidden");
-  const [isFavoritesClicked, SetIsFavoriteClicked] = useState(false);
-  const { listMovies } = useSelector((state) => state.data);
-  const click = () => {
-    if (!isFavoritesClicked) {
-      SetMenuClass("menu visible");
-    } else {
-      SetMenuClass("menu hidden");
-    }
-  };
+const Header = ({ openSideBar }) => {
+  const { listMovies} = useSelector((state) => state.data)
 
   return (
     <header className="bg-[#00005c] flex items-center p-[15px] justify-between w-full px-20">
@@ -24,13 +13,13 @@ const Header = () => {
       </h1>
       <div className="flex gap-10">
         <SearchBox />
-        <div className="text-white text-4xl flex justify-center items-center mt-2">
-          <button>
+        <div className="text-white relative text-4xl flex justify-center items-center mt-2  text-center">
+          <button onClick={openSideBar}>
             <BsFillBookmarkHeartFill />
-            <Favorites />
           </button>
+          <p className="absolute top-[-5px] right-[-5px] bg-red-500 px-2 rounded-full text-sm" >{listMovies.length}</p>
         </div>
-        </div>
+      </div>
     </header>
   );
 };

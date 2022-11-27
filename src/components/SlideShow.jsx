@@ -2,7 +2,9 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSlideShowdata } from "../state/actions";
 import Slider from "react-slick";
-import { BsFillStarFill } from "react-icons/bs";
+import { BsFillStarFill, BsFillCalendarFill } from "react-icons/bs";
+import { IoIosPeople } from "react-icons/io";
+import { IoLanguageOutline } from "react-icons/io5";
 
 import "../slider.css";
 
@@ -10,7 +12,6 @@ const API_IMG = "https://image.tmdb.org/t/p/w500/";
 
 const SlideShow = () => {
   const { slideShowdata } = useSelector((state) => state.data);
-  console.log(slideShowdata)
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getSlideShowdata());
@@ -25,7 +26,7 @@ const SlideShow = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: false,
     speed: 2000,
     autoplaySpeed: 4000,
     cssEase: "linear",
@@ -54,9 +55,24 @@ const SlideShow = () => {
                   </p>
                 </div>
               </div>
-              <div className="flex gap-2 text-lightgrey text-xl mt-5">
-                <p>{slide.release_date}</p> |<p>{slide.vote_count}</p> |
-                <p>{slide.original_language}</p>
+              <div className="flex gap-2 text-lightgrey text-xl mt-5 items-center text-center">
+                <p className="flex gap-4 items-center">
+                  {" "}
+                  <BsFillCalendarFill />
+                  {slide.release_date}
+                </p>{" "}
+                |
+                <p className="flex  items-center gap-4 text-2xl">
+                  {" "}
+                  <IoIosPeople />
+                  {slide.vote_count}
+                </p>{" "}
+                |
+                <p className="flex gap-4 items-center">
+                  {" "}
+                  <IoLanguageOutline />
+                  {slide.original_language}
+                </p>
               </div>
 
               <div className="mt-8">

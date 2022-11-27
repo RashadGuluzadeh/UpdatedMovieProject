@@ -1,17 +1,19 @@
-import React, { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import React, { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import { Route} from "react-router-dom";
 // import './App.css'
-import MainPage from './pages/MainPage'
+import MainPage from "./pages/MainPage";
+import ListPage from "./pages/ListPage";
 
-import "./reset.css"
+import "./reset.css";
 
 function App() {
-
   return (
     <div className="App font-josefin">
-      <MainPage />
+        <Route path="/" exact component={MainPage} />
+        <Route path="/list/:id" exact component={ListPage} />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -4,6 +4,8 @@ const initialState = {
   slideShowdata: [],
   data: [],
   listMovies: [],
+  postMovies: [],
+  linkActive: false,
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -25,6 +27,10 @@ const reducer = (state = initialState, { type, payload }) => {
     case ActionTypes.REMOVE_MOVIE_FROM_LIST:
         const newMovieList = state.listMovies.filter((item) => item.id !== payload);
         return { ...state, listMovies : newMovieList };
+    case ActionTypes.SET_LINKACTIVE: 
+      return {...state, linkActive: payload}
+    case ActionTypes.ADD_POST_MOVIES : 
+      return {...state, postMovies : [...state.postMovies, payload]}
     default:
       return state;
   }

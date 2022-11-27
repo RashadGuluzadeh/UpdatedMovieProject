@@ -18,6 +18,16 @@ export const getSlideShowdata = () => {
     }
   };
 };
+export const getPostMovies = (id) => {
+  return function (dispatch) {
+    let postMovies = [];
+    axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=bcc4ff10c2939665232d75d8bf0ec093`).then((res) => res.data).then((data) =>{
+      postMovies = [...postMovies, data];
+      dispatch(addPostMovie(postMovies));
+      console.log(postMovies)
+    })
+  }
+}
 
 export const getMovies = async (search) => {
   const res = await axios.get(
@@ -46,11 +56,11 @@ export const removeListMovie = (payload) => ({
 });
 
 export const setLinkActive = (payload) => ({
-  type: SET_LINKACTIVE,
+  type: ActionTypes.SET_LINKACTIVE,
   payload,
 });
 
 export const addPostMovie = (payload) => ({
-  type: ADD_POST_MOVIES,
+  type: ActionTypes.ADD_POST_MOVIES,
   payload,
 });
