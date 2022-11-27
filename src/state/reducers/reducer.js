@@ -1,10 +1,10 @@
 import { ActionTypes } from "../actions/action-types";
 
 const initialState = {
+  postMovies: [],
   slideShowdata: [],
   data: [],
   listMovies: [],
-  postMovies: [],
   linkActive: false,
 };
 

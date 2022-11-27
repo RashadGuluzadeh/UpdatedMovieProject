@@ -22,19 +22,16 @@ const Favorites = ({ sideBar, closeSideBar }) => {
       })
       .then((res) => {
         setListLink(res.data.id);
-        console.log(res.data.id);
       })
       .catch((error) => {
         console.error("There was an error!", error);
       });
   };
-
-  // dispatch(setLinkActive(true))
   return (
     <div className={sideBar ? "sidebar sidebar--open" : "sidebar"}>
       <button
         onClick={closeSideBar}
-        className="text-red-600 absolute text-5xl top-0 right-0  rounded-3xl mt-4"
+        className="text-red-600 absolute text-5xl top-0 right-8  rounded-3xl mt-4 hover:scale-110 hover:duration-300 hover:bg-white"
       >
         <RiCloseFill />
       </button>
@@ -54,7 +51,7 @@ const Favorites = ({ sideBar, closeSideBar }) => {
           {favorites.title}
           <button
             onClick={() => dispatch(removeListMovie(favorites.id))}
-            className="ml-8 disabled:cursor-not-allowed text-red-700 justify-end bg-[rgba(255,255,255,0.1)] py-1 px-2 h-[30px] rounded-full"
+            className="ml-8 disabled:cursor-not-allowed hover:bg-white hover:scale-110 hover:duration-300 text-red-700 justify-end bg-[rgba(255,255,255,0.1)] py-1 px-2 h-[30px] rounded-full"
             disabled={linkActive}
           >
             <RiDeleteBin5Line />
@@ -64,7 +61,7 @@ const Favorites = ({ sideBar, closeSideBar }) => {
       <button
         onClick={saveList}
         type="button"
-        className={`text-white disabled:cursor-not-allowed bg-blue-500 p-2 w-48 text-2xl  ${
+        className={`text-white hover:opacity-50 hover:duration-200 disabled:cursor-not-allowed bg-blue-500 p-2 w-48 text-2xl  ${
           linkActive ? "link__none" : null
         }`}
         disabled={title === '' || listMovies.length === 0}
@@ -75,7 +72,7 @@ const Favorites = ({ sideBar, closeSideBar }) => {
         href={`http://127.0.0.1:5173/list/${listLink}`}
         target="_blank"
         rel="noopener norefer"
-        className={`link__none text-white bg-blue-500 w-48 text-center p-2  ${linkActive ? "link__block" : null}`}
+        className={`link__none hover:opacity-50 hover:duration-200 text-white bg-blue-500 w-48 text-center p-2  ${linkActive ? "link__block" : null}`}
       >
         Share with friends
       </a>

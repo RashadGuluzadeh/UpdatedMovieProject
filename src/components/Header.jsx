@@ -13,11 +13,11 @@ const Header = ({ openSideBar }) => {
       </h1>
       <div className="flex gap-10">
         <SearchBox />
-        <div className="text-white relative text-4xl flex justify-center items-center mt-2  text-center">
+        <div className="text-white relative text-4xl flex justify-center items-center mt-2  text-center hover:opacity-80 hover:duration-200">
           <button onClick={openSideBar}>
             <BsFillBookmarkHeartFill />
           </button>
-          <p className="absolute top-[-5px] right-[-5px] bg-red-500 px-2 rounded-full text-sm" >{listMovies.length}</p>
+          <p className="absolute top-[-5px] right-[-5px] bg-red-600 px-2 rounded-full text-sm" >{listMovies.length}</p>
         </div>
       </div>
     </header>

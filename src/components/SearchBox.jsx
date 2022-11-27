@@ -13,6 +13,10 @@ const SearchBox = () => {
     event.preventDefault();
   };
 
+  const scrollToMovies = () => {
+    window.scrollTo({ top: 2000, behavior: "smooth" });
+  };
+
   const dispatch = useDispatch();
   return (
     <form className="flex relative" onSubmit={searchBoxSubmitHandler}>
@@ -27,12 +31,16 @@ const SearchBox = () => {
       </label>
       <p className="w-[20px] absolute right-[85px] top-5 h-[20px] inline-block bg-black rotate-45"></p>
       <button
-        onClick={() => getMovies(search)
-          .then((res) => dispatch(addMovies(res))).then(res => console.log(res))
-          .catch((err) => {
-            dispatch(addMovies([]));
-            return err;
-          })}
+        onClick={() => {
+          getMovies(search)
+            .then((res) => dispatch(addMovies(res)))
+            .then((res) => console.log(res))
+            .catch((err) => {
+              dispatch(addMovies([]));
+              return err;
+            });
+          scrollToMovies
+        }}
         className="bg-black mt-[9px] py-[5px] px-[10px] text-[#ffeedb] outline-none w-[100px] text-[18px]"
         type="submit"
       >

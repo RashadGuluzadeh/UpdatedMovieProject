@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ActionTypes } from "./action-types";
 
-const filmName = "Escape Room";
+const filmName = "Saw";
 
 export const getSlideShowdata = () => {
   return async (dispatch) => {
@@ -20,11 +20,10 @@ export const getSlideShowdata = () => {
 };
 export const getPostMovies = (id) => {
   return function (dispatch) {
-    let postMovies = [];
+    let postMovie = [];
     axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=bcc4ff10c2939665232d75d8bf0ec093`).then((res) => res.data).then((data) =>{
-      postMovies = [...postMovies, data];
-      dispatch(addPostMovie(postMovies));
-      console.log(postMovies)
+      postMovie = [...postMovie, data];
+      dispatch(addPostMovie(postMovie));
     })
   }
 }

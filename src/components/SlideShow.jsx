@@ -26,7 +26,7 @@ const SlideShow = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: false,
+    autoplay: true,
     speed: 2000,
     autoplaySpeed: 4000,
     cssEase: "linear",
