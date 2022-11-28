@@ -7,6 +7,8 @@ import Favorites from "../components/Favorites";
 const MainPage = () => {
   const [sideBar, setSideBar] = useState(false);
 
+  
+
   const toggleSideBar = () => {
     setSideBar((prevState) => !prevState);
   };

@@ -21,12 +21,17 @@ export const getSlideShowdata = () => {
 export const getPostMovies = (id) => {
   return function (dispatch) {
     let postMovie = [];
-    axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=bcc4ff10c2939665232d75d8bf0ec093`).then((res) => res.data).then((data) =>{
-      postMovie = [...postMovie, data];
-      dispatch(addPostMovie(postMovie));
-    })
-  }
-}
+    axios
+      .get(
+        `https://api.themoviedb.org/3/movie/${id}?api_key=bcc4ff10c2939665232d75d8bf0ec093`
+      )
+      .then((res) => res.data)
+      .then((data) => {
+        postMovie = [...postMovie, data];
+        dispatch(addPostMovie(postMovie));
+      });
+  };
+};
 
 export const getMovies = async (search) => {
   const res = await axios.get(

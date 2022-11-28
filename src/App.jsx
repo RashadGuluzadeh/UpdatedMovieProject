@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import reactLogo from "./assets/react.svg";
 import { Route} from "react-router-dom";
 // import './App.css'
 import MainPage from "./pages/MainPage";
