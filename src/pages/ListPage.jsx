@@ -26,7 +26,7 @@ const ListPage = (props) => {
   }, []);
   return (
     <div className="text-white flex justify-center mt-12 mb-12 flex-col items-center">
-      <h1 className=" bg-[#28272a] w-[70%] text-5xl text-center p-4 ">{title}</h1>
+      <h1 className=" bg-[#00005c] w-[70%] text-5xl text-center p-4 ">{title}</h1>
       <div className="flex flex-col justify-center w-[70%] ">
         {postMovies.map((item) => (
           <div key={item[0].id} className='w-full flex gap-20 bg-[#28272a] mt-8 p-8 '>
