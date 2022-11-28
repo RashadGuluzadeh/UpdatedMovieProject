@@ -22,6 +22,7 @@ const Favorites = ({ sideBar, closeSideBar }) => {
       })
       .then((res) => {
         setListLink(res.data.id);
+        console.log(res)
       })
       .catch((error) => {
         console.error("There was an error!", error);
@@ -36,7 +37,7 @@ const Favorites = ({ sideBar, closeSideBar }) => {
         <RiCloseFill />
       </button>
       <h1 className="text-white text-5xl mb-4">Favorites</h1>
-      <input
+      <input  
         className="w-full mb-8 p-2 outline-none"
         value={title}
         placeholder="Enter the name of the list"
@@ -64,7 +65,7 @@ const Favorites = ({ sideBar, closeSideBar }) => {
         className={`text-white hover:opacity-50 hover:duration-200 disabled:cursor-not-allowed bg-blue-500 p-2 w-48 text-2xl  ${
           linkActive ? "link__none" : null
         }`}
-        disabled={title === '' || listMovies.length === 0}
+        disabled={title === "" || listMovies.length === 0}
       >
         Save List
       </button>
@@ -72,7 +73,9 @@ const Favorites = ({ sideBar, closeSideBar }) => {
         href={`http://127.0.0.1:5173/list/${listLink}`}
         target="_blank"
         rel="noopener norefer"
-        className={`link__none hover:opacity-50 hover:duration-200 text-white bg-blue-500 w-48 text-center p-2  ${linkActive ? "link__block" : null}`}
+        className={`link__none hover:opacity-50 hover:duration-200 text-white bg-blue-500 w-48 text-center p-2  ${
+          linkActive ? "link__block" : null
+        }`}
       >
         Share with friends
       </a>

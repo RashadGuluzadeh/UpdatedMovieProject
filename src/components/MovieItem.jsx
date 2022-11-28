@@ -9,8 +9,8 @@ const MovieItem = ({title, poster_path, release_date, id, disabled}) => {
   const  { linkActive }  = useSelector((state) => state.data) 
   return (
       <div className=" relative flex flex-col justify-center item-center text-center p-4 bg-[#151312] shadow-lg backdrop-4">
-        <button disabled={disabled || linkActive} onClick={() => dispatch(addListMovie(id))} type='button' className=' disabled:cursor-not-allowed text-white w-16 h-16 bg-blue-600 ease-in-out text-3xl px-5 py-3 absolute top-[-15px] right-[-15px] rounded-[50px]'>{!disabled ? "+" : "✓"}</button>
-        <img  className='w-72 flex justify-center' src={API_IMG+poster_path}/>
+        <button disabled={disabled || linkActive} onClick={() => dispatch(addListMovie(id))} type='button' className=' hover:scale-110 hover:duration-300 disabled:cursor-not-allowed text-white w-16 h-16 bg-blue-600 ease-in-out text-3xl px-5 py-3 absolute top-[-15px] right-[-15px] rounded-[50px]'>{!disabled ? "+" : "✓"}</button>
+        <img  className='w-72 flex justify-center text-white ' src={API_IMG+poster_path} alt={title}/>
         <div className="inline w-72 text-center">
             <h3 className="text-white text-xl mt-4 h-16">
                 {title}

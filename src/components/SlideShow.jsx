@@ -10,7 +10,7 @@ import "../slider.css";
 
 const API_IMG = "https://image.tmdb.org/t/p/w500/";
 
-const SlideShow = () => {
+const SlideShow = ({closeSideBar}) => {
   const { slideShowdata } = useSelector((state) => state.data);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -32,7 +32,7 @@ const SlideShow = () => {
     cssEase: "linear",
   };
   return (
-    <div>
+    <div onClick={closeSideBar}>
       <Slider {...settings}>
         {slideShowdata.map((slide) => (
           <div

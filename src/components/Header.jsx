@@ -3,7 +3,7 @@ import SearchBox from "./SearchBox/";
 import { BsFillBookmarkHeartFill } from "react-icons/bs";
 import { useSelector } from "react-redux";
 
-const Header = ({ openSideBar }) => {
+const Header = ({ openSideBar}) => {
   const { listMovies} = useSelector((state) => state.data)
 
   return (

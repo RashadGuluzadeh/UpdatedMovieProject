@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addMovies, getMovies } from "../state/actions";
 
@@ -9,12 +9,34 @@ const SearchBox = () => {
     setSearch(event.target.value);
   };
 
+  const handleKeyDown  = (e) => {
+    if (e.key === "Enter") {
+      getMovies(search)
+        .then((res) => dispatch(addMovies(res)))
+        .catch((err) => {
+          dispatch(addMovies([]));
+          return err;
+        });
+      setTimeout(() => {
+        window.scrollTo({ top: 700, behavior: "smooth" });
+      }, 800);
+    }
+  };
+
   const searchBoxSubmitHandler = (event) => {
     event.preventDefault();
   };
 
   const scrollToMovies = () => {
-    window.scrollTo({ top: 2000, behavior: "smooth" });
+    getMovies(search)
+      .then((res) => dispatch(addMovies(res)))
+      .catch((err) => {
+        dispatch(addMovies([]));
+        return err;
+      });
+    setTimeout(() => {
+      window.scrollTo({ top: 700, behavior: "smooth" });
+    }, 8000);
   };
 
   const dispatch = useDispatch();
@@ -22,6 +44,7 @@ const SearchBox = () => {
     <form className="flex relative" onSubmit={searchBoxSubmitHandler}>
       <label>
         <input
+          onKeyDown={handleKeyDown}
           className="mt-[10px] w-[350px] text-[15px] py-[10px] px-[5px] outline-none "
           type="text"
           placeholder="For example, Shawshank Redemption"
@@ -32,14 +55,7 @@ const SearchBox = () => {
       <p className="w-[20px] absolute right-[85px] top-5 h-[20px] inline-block bg-black rotate-45"></p>
       <button
         onClick={() => {
-          getMovies(search)
-            .then((res) => dispatch(addMovies(res)))
-            .then((res) => console.log(res))
-            .catch((err) => {
-              dispatch(addMovies([]));
-              return err;
-            });
-          scrollToMovies
+          scrollToMovies();
         }}
         className="bg-black mt-[9px] py-[5px] px-[10px] text-[#ffeedb] outline-none w-[100px] text-[18px]"
         type="submit"
