@@ -22,7 +22,7 @@ const Favorites = ({ sideBar, closeSideBar }) => {
       })
       .then((res) => {
         setListLink(res.data.id);
-        console.log(res)
+        console.log(res);
       })
       .catch((error) => {
         console.error("There was an error!", error);
@@ -37,7 +37,7 @@ const Favorites = ({ sideBar, closeSideBar }) => {
         <RiCloseFill />
       </button>
       <h1 className="text-white text-5xl mb-4">Favorites</h1>
-      <input  
+      <input
         className="w-full mb-8 p-2 outline-none"
         value={title}
         placeholder="Enter the name of the list"

@@ -36,7 +36,7 @@ const SearchBox = () => {
       });
     setTimeout(() => {
       window.scrollTo({ top: 700, behavior: "smooth" });
-    }, 8000);
+    }, 800);
   };
 
   const dispatch = useDispatch();
