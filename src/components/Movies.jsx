@@ -8,8 +8,8 @@ const Movies = ({closeSideBar, search}) => {
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 5000)
-  }, [search])
+    }, 6000)
+  })
   const { data, listMovies } = useSelector((state) => state.data);
   return (
     <div className="flex justify-center mt-20" onClick={closeSideBar} >

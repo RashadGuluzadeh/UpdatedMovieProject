@@ -84,7 +84,7 @@ const SlideShow = ({ closeSideBar }) => {
                 <p className="!inline border-solid   border-b-4  border-red-500 text-2xl pb-2">
                   Overview
                 </p>
-                <p className="mt-5 text-m w-90 leading-5">{slide.overview}</p>
+                <p className="mt-5 text-xl w-90 leading-5">{slide.overview}</p>
               </div>
             </div>
           </div>

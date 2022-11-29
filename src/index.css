@@ -40,7 +40,7 @@
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    animation: ring 2s linear;
+    animation: ring 2s infinite;
 }
 @keyframes ring{
     0%{
@@ -72,19 +72,4 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     line-height: 200px;
-}
-.pulse{
-    filter: blur(3px);
-    animation: leftToRight 2s infinite;
-}
-
-@keyframes leftToRight {
-    0% {
-        transform: translateX(-300px);
-        opacity: .2;
-    }
-    100% {
-        transform: translateX(800px);
-        opacity: 0;
-    }
 }

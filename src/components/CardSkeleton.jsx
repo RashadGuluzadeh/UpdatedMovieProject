@@ -8,8 +8,8 @@ export const CardSkeleton = ({ cards }) => {
     .map((item, i) => (
       <div key={i}>
         <div className=" relative flex flex-col justify-center item-center text-center p-4 bg-[#151312] shadow-lg backdrop-4">
-          <Skeleton width={288} height={432} />
-          <div className="inline w-72 text-center">
+          <Skeleton width={320} height={432} />
+          <div className="inline w-80 text-center">
             <h3 className="text-white text-xl mt-4 h-16">
               <Skeleton />
             </h3>
