@@ -3,13 +3,13 @@ import { useSelector } from "react-redux";
 import { CardSkeleton } from "./CardSkeleton";
 import MovieItem from "./MovieItem";
 
-const Movies = ({closeSideBar}) => {
+const Movies = ({closeSideBar, search}) => {
   const [isLoading, setIsLoading] = useState(true)
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 4000)
-  })
+    }, 5000)
+  }, [search])
   const { data, listMovies } = useSelector((state) => state.data);
   return (
     <div className="flex justify-center mt-20" onClick={closeSideBar} >
