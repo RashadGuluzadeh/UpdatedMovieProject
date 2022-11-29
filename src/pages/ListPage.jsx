@@ -50,7 +50,7 @@ const ListPage = (props) => {
                 <p className="flex gap-4 items-center">
                   {" "}
                   <BsFillCalendarFill />
-                  {item[0].release_date}
+                  {item[0].release_date.split("-").reverse().join("/")}
                 </p>{" "}
                 |
                 <p className="flex  items-center gap-4 text-2xl">
@@ -70,7 +70,7 @@ const ListPage = (props) => {
                 <p className="!inline border-solid border-b-4 border-red-500 text-2xl pb-2">
                   Overview
                 </p>
-                <p className="mt-5 text-xl w-[650px]">{item[0].overview}</p>
+                <p className="mt-5 text-xl w-[650px] max-w-md">{item[0].overview}</p>
               </div>
             </div>
           </div>

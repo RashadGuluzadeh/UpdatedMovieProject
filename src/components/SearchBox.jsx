@@ -17,9 +17,9 @@ const SearchBox = () => {
           dispatch(addMovies([]));
           return err;
         });
-      setSearch("");
       setTimeout(() => {
         window.scrollTo({ top: 700, behavior: "smooth" });
+        setSearch('');
       }, 800);
     }
   };
@@ -37,8 +37,8 @@ const SearchBox = () => {
       });
     setTimeout(() => {
       window.scrollTo({ top: 700, behavior: "smooth" });
+      setSearch('');
     }, 800);
-    setSearch("");
   };
 
   const dispatch = useDispatch();

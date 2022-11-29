@@ -15,7 +15,7 @@ const MovieItem = ({title, poster_path, release_date, id, disabled}) => {
             <h3 className="text-white text-xl mt-4 h-16">
                 {title}
             </h3>
-            <p className="text-white text-xl" >{release_date}</p>
+            <p className="text-white text-xl" >{release_date.split("-").reverse().join("/")}</p>
         </div>
       </div>
   );

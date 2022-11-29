@@ -6,11 +6,15 @@ import { BsFillStarFill, BsFillCalendarFill } from "react-icons/bs";
 import { IoIosPeople } from "react-icons/io";
 import { IoLanguageOutline } from "react-icons/io5";
 
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+
 import "../slider.css";
+import { CardSkeleton } from "./CardSkeleton";
 
 const API_IMG = "https://image.tmdb.org/t/p/w500/";
 
-const SlideShow = ({closeSideBar}) => {
+const SlideShow = ({ closeSideBar }) => {
   const { slideShowdata } = useSelector((state) => state.data);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -26,7 +30,7 @@ const SlideShow = ({closeSideBar}) => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: false,
     speed: 2000,
     autoplaySpeed: 4000,
     cssEase: "linear",
@@ -37,7 +41,7 @@ const SlideShow = ({closeSideBar}) => {
         {slideShowdata.map((slide) => (
           <div
             key={slide.genre_ids[0]}
-            className="mt-16 bg-[#151312]  !flex gap-32 justify-center p-8 pb-16 max-w-7xl mx-auto mb-4"
+            className="mt-16 bg-[#151312]  !flex gap-24 justify-center p-8 pb-16 max-w-7xl mx-auto mb-4"
           >
             <img
               className="w-70 h-[400px] inline-block mt-10"
@@ -59,7 +63,7 @@ const SlideShow = ({closeSideBar}) => {
                 <p className="flex gap-4 items-center">
                   {" "}
                   <BsFillCalendarFill />
-                  {slide.release_date}
+                  {slide.release_date.split("-").reverse().join("/")}
                 </p>{" "}
                 |
                 <p className="flex  items-center gap-4 text-2xl">
@@ -72,14 +76,15 @@ const SlideShow = ({closeSideBar}) => {
                   {" "}
                   <IoLanguageOutline />
                   {slide.original_language}
+                  
                 </p>
               </div>
 
               <div className="mt-8">
-                <p className="!inline border-solid border-b-4 border-red-500 text-2xl pb-2">
+                <p className="!inline border-solid   border-b-4  border-red-500 text-2xl pb-2">
                   Overview
                 </p>
-                <p className="mt-5 text-xl w-[650px]">{slide.overview}</p>
+                <p className="mt-5 text-m w-90 leading-5">{slide.overview}</p>
               </div>
             </div>
           </div>
