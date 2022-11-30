@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSlideShowdata } from "../state/actions";
 import Slider from "react-slick";
@@ -6,19 +6,22 @@ import { BsFillStarFill, BsFillCalendarFill } from "react-icons/bs";
 import { IoIosPeople } from "react-icons/io";
 import { IoLanguageOutline } from "react-icons/io5";
 
-import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
+import "react-loading-skeleton/dist/skeleton.css";
 
 import "../slider.css";
-import { CardSkeleton } from "./CardSkeleton";
+import { SlideshowSkeleton } from "./Skeleton/SlideshowSkeleton";
 
 const API_IMG = "https://image.tmdb.org/t/p/w500/";
 
 const SlideShow = ({ closeSideBar }) => {
   const { slideShowdata } = useSelector((state) => state.data);
+  const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getSlideShowdata());
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
   }, []);
 
   const settings = {
@@ -30,7 +33,7 @@ const SlideShow = ({ closeSideBar }) => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: false,
+    autoplay: true,
     speed: 2000,
     autoplaySpeed: 4000,
     cssEase: "linear",
@@ -38,6 +41,7 @@ const SlideShow = ({ closeSideBar }) => {
   return (
     <div onClick={closeSideBar}>
       <Slider {...settings}>
+        {isLoading && <SlideshowSkeleton />}
         {slideShowdata.map((slide) => (
           <div
             key={slide.genre_ids[0]}
@@ -76,7 +80,6 @@ const SlideShow = ({ closeSideBar }) => {
                   {" "}
                   <IoLanguageOutline />
                   {slide.original_language}
-                  
                 </p>
               </div>
 

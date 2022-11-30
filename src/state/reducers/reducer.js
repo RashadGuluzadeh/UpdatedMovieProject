@@ -6,6 +6,7 @@ const initialState = {
   data: [],
   listMovies: [],
   linkActive: false,
+  loading: false,
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -19,18 +20,27 @@ const reducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         data: payload,
+        loading: true,
+      };
+    case ActionTypes.LOADING:
+      console.log(payload);
+      return {
+        ...state,
+        loading: false,
       };
     case ActionTypes.ADD_MOVIE_TO_LIST:
       const movie = state.data.find((item) => item.id === payload);
       const listMovies = [...state.listMovies, { ...movie }];
       return { ...state, listMovies };
     case ActionTypes.REMOVE_MOVIE_FROM_LIST:
-        const newMovieList = state.listMovies.filter((item) => item.id !== payload);
-        return { ...state, listMovies : newMovieList };
-    case ActionTypes.SET_LINKACTIVE: 
-      return {...state, linkActive: payload}
-    case ActionTypes.ADD_POST_MOVIES : 
-      return {...state, postMovies : [...state.postMovies, payload]}
+      const newMovieList = state.listMovies.filter(
+        (item) => item.id !== payload
+      );
+      return { ...state, listMovies: newMovieList };
+    case ActionTypes.SET_LINKACTIVE:
+      return { ...state, linkActive: payload };
+    case ActionTypes.ADD_POST_MOVIES:
+      return { ...state, postMovies: [...state.postMovies, payload] };
     default:
       return state;
   }

@@ -44,7 +44,7 @@ const Favorites = ({ sideBar, closeSideBar }) => {
         onChange={handleInput}
         disabled={linkActive}
       />
-      <p className={` text-white mb-8 text-2xl ${listMovies.length === 0 ? "" : "link__none"}`}>No films added</p>
+      <p className={` text-white mb-8 text-2xl ${listMovies.length === 0 ? "" : "link__none"}`}>No films added yet</p>
       {listMovies.map((favorites) => (
         <li
           className="text-white w-full flex justify-between mb-4 items-center"

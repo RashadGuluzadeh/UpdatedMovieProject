@@ -33,7 +33,6 @@ export const getPostMovies = (id) => {
   };
 };
 
-
 export const getMovies = async (search) => {
   const res = await axios.get(
     `https://api.themoviedb.org/3/search/movie?api_key=bcc4ff10c2939665232d75d8bf0ec093&query=${search}`
@@ -42,13 +41,18 @@ export const getMovies = async (search) => {
   if (!data) {
     throw console.log("Error");
   }
-  
+
   return data;
 };
 
 export const addMovies = (payload) => ({
   type: ActionTypes.ADD_MOVIES,
   payload,
+});
+
+export const Loading = () => ({
+  type: ActionTypes.LOADING,
+  payload: false,
 });
 
 export const addListMovie = (payload) => ({

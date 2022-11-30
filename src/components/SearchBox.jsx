@@ -4,7 +4,6 @@ import { addMovies, getMovies } from "../state/actions";
 
 const SearchBox = () => {
   const [search, setSearch] = useState("");
-  const [skeleton, setSkeleton] = useState(true);
 
   const searchHandler = (event) => {
     setSearch(event.target.value);
@@ -36,7 +35,7 @@ const SearchBox = () => {
         dispatch(addMovies([]));
         return err;
       });
-    setSkeleton(false);
+
     setTimeout(() => {
       window.scrollTo({ top: 700, behavior: "smooth" });
       setSearch('');
