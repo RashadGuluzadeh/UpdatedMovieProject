@@ -42,6 +42,7 @@ export const getMovies = async (search) => {
   if (!data) {
     throw console.log("Error");
   }
+  
   return data;
 };
 
