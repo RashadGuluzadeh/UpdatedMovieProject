@@ -1,0 +1,176 @@
+/* Core slick layout (from slick-carousel) */
+.slick-slider {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  user-select: none;
+  -webkit-touch-callout: none;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.slick-list {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+.slick-list:focus {
+  outline: none;
+}
+.slick-list.dragging {
+  cursor: grabbing;
+}
+
+.slick-slider .slick-track,
+.slick-slider .slick-list {
+  transform: translate3d(0, 0, 0);
+}
+
+.slick-track {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.slick-track:before,
+.slick-track:after {
+  display: table;
+  content: "";
+}
+.slick-track:after {
+  clear: both;
+}
+.slick-loading .slick-track,
+.slick-loading .slick-slide {
+  visibility: hidden;
+}
+
+.slick-slide {
+  display: none;
+  float: left;
+  height: 100%;
+  min-height: 1px;
+}
+.slick-slide img {
+  display: block;
+}
+.slick-slide.dragging img {
+  pointer-events: none;
+}
+.slick-initialized .slick-slide {
+  display: block;
+}
+.slick-arrow.slick-hidden {
+  display: none;
+}
+
+/* Non-centered slides fade back so the active one stands out */
+.slick-slide {
+  opacity: 0.35;
+  transition: opacity 0.6s ease;
+}
+.slick-slide.slick-active,
+.slick-slide.slick-center {
+  opacity: 1;
+}
+
+/* Arrows */
+.slick-prev,
+.slick-next {
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid #2a2f3a;
+  border-radius: 9999px;
+  background: rgba(15, 17, 22, 0.7);
+  backdrop-filter: blur(6px);
+  font-size: 0;
+  color: transparent;
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.slick-prev:hover,
+.slick-next:hover {
+  background: rgba(31, 35, 44, 0.95);
+  border-color: #8b95f7;
+}
+.slick-prev:before,
+.slick-next:before {
+  font-size: 26px;
+  line-height: 1;
+  color: #e4e6eb;
+  opacity: 0.85;
+}
+.slick-prev {
+  left: 24px;
+}
+.slick-next {
+  right: 24px;
+}
+.slick-prev:before {
+  content: "‹";
+}
+.slick-next:before {
+  content: "›";
+}
+
+/* Dots */
+.slick-dots {
+  position: absolute;
+  bottom: -32px;
+  /* react-slick sets an inline display:block on the dots list */
+  display: flex !important;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.slick-dots li button {
+  display: block;
+  width: 20px;
+  height: 14px;
+  padding: 5px 0;
+  border: 0;
+  background: transparent;
+  font-size: 0;
+  color: transparent;
+  cursor: pointer;
+}
+.slick-dots li button:before {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 4px;
+  border-radius: 9999px;
+  background-color: #2a2f3a;
+  transition: background-color 0.3s ease, width 0.3s ease;
+}
+.slick-dots li button:hover:before {
+  background-color: #6b7385;
+}
+.slick-dots li.slick-active button {
+  width: 32px;
+}
+.slick-dots li.slick-active button:before {
+  background-color: #8b95f7;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slick-slide,
+  .slick-dots li button:before {
+    transition: none;
+  }
+}

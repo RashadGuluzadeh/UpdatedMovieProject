@@ -2,74 +2,95 @@
 @tailwind components;
 @tailwind utilities;
 
-.sidebar{
-    width: 28rem;
-    position: absolute;
-    z-index: 10;
-    right: 0;
-    background-color: #28272a;
-    top: 0;
-    list-style-type: none;
-    padding: 2rem;
-    font-size: 1.25rem;
-    transform: translateY(-100%);
-    transition: all 0.4s;
+@layer base {
+    html {
+        color-scheme: dark;
+        scroll-behavior: smooth;
+    }
+    body {
+        @apply bg-ink text-fg font-sans antialiased;
+    }
+    ::selection {
+        @apply bg-accent/30;
+    }
+    :focus-visible {
+        @apply outline-none ring-2 ring-accent/70 ring-offset-2 ring-offset-ink;
+    }
 }
 
-.sidebar--open{
-    transform: translateY(0%);
-}
-
-.link__none{
-    display: none;
-}
-
-.link__block{
-    display: block;
+@layer components {
+    .btn {
+        @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium
+               transition duration-200 active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-50
+               disabled:active:scale-100;
+    }
+    .btn-primary {
+        @apply btn bg-accent-strong text-white hover:bg-accent;
+    }
+    .btn-ghost {
+        @apply btn bg-raised text-fg hover:bg-line;
+    }
+    .icon-btn {
+        @apply inline-flex items-center justify-center rounded-full transition-colors duration-200
+               disabled:cursor-not-allowed disabled:opacity-60;
+    }
+    .scrollbar-none {
+        scrollbar-width: none;
+    }
+    .scrollbar-none::-webkit-scrollbar {
+        display: none;
+    }
+    .chip {
+        @apply rounded-full border border-line bg-raised px-3 py-1 text-xs text-muted;
+    }
 }
 
 .load-center{
     display: flex;
-    text-align: center;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
 }
-.ring{
-    position: absolute;
-    width: 200px;
-    height: 200px;
+.spinner{
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
-    animation: ring 2s infinite;
+    border: 3px solid #2a2f3a;
+    border-top-color: #8b95f7;
+    animation: spin 0.9s linear infinite;
 }
-@keyframes ring{
-    0%{
-        transform: rotate(0deg);
-        box-shadow: 1px 5px 2px #e65c00;
-    }
-    50%{
-        transform: rotate(180deg);
-        box-shadow: 1px 5px 2px #18b201;
-    }
-    100%{
-        transform: rotate(360deg);
-        box-shadow: 1px 5px 2px #0456c8;
-    }
+@keyframes spin{
+    to { transform: rotate(360deg); }
 }
-.ring:before{
-    position: absolute;
-    content: '';
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    border-radius: 50%;
-    box-shadow: 0 0 5px rgba(255,255,255,0.3);
+
+/* ---------- Motion ----------
+   Everything below only moves when the visitor hasn't asked for reduced
+   motion; otherwise content simply appears in place. */
+@keyframes rise-in{
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
-.loading{
-    color: #737373;
-    font-size: 20px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    line-height: 200px;
+
+@media (prefers-reduced-motion: no-preference){
+    /* Sections fade up as they scroll into view (see Reveal.jsx). */
+    .reveal{ opacity: 0; }
+    /* "backwards" fill: no transform is left behind once the motion ends,
+       so fixed/sticky children keep behaving normally. */
+    .reveal--visible{ opacity: 1; animation: rise-in 600ms cubic-bezier(0.2, 0.8, 0.2, 1) backwards; }
+
+    /* Cards inside a revealed section come in one after another;
+       --i is the card's position, capped so long rows don't lag. */
+    .reveal--visible .stagger > *{
+        animation: rise-in 500ms cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+        animation-delay: calc(var(--i, 0) * 55ms + 120ms);
+    }
+
+    /* Images fade in once loaded instead of popping in line by line. */
+    .img-fade{ opacity: 0; transition: opacity 500ms ease, transform 500ms ease; }
+    .img-fade.is-loaded{ opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    .spinner{ animation-duration: 3s; }
 }
