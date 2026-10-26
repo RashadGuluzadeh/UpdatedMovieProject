@@ -21,8 +21,10 @@ const NAV_ITEMS: NavItem[] = [
   { to: "/watchlist", key: "nav.watchlist", icon: RiBookmarkLine, showCount: true },
 ];
 
+// after: stretches the 36px pill to a 44px touch target; the nav's py-1 below
+// leaves it room, since an overflow-x scroller would otherwise clip it.
 const navClass = ({ isActive }: { isActive: boolean }) =>
-  `relative flex items-center gap-2 whitespace-nowrap rounded-full px-3 py-1.5 text-sm transition-colors ${
+  `relative flex items-center gap-2 whitespace-nowrap rounded-full px-3 py-2 text-sm transition-colors after:absolute after:inset-x-0 after:-inset-y-1 ${
     isActive ? "bg-raised text-fg" : "text-muted hover:text-fg"
   }`;
 
@@ -31,7 +33,9 @@ const Header = () => {
   const { t } = useI18n();
 
   return (
-    <header className="sticky top-0 z-30 border-b border-line/60 bg-ink/80 backdrop-blur-md">
+    // Pinned only on desktop, where it is one row. On a phone it is three rows
+    // (about 22% of the screen), so it scrolls away with the page instead.
+    <header className="relative z-30 border-b border-line/60 bg-ink/80 backdrop-blur-md lg:sticky lg:top-0">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-6 gap-y-3 px-4 py-3 md:px-8">
         {/* Mobile: logo + controls / search / nav. Desktop (lg): one row. */}
         <Link to="/" className="order-1 font-display text-3xl font-semibold tracking-tight text-fg">
@@ -40,7 +44,7 @@ const Header = () => {
 
         <nav
           aria-label={t("nav.main")}
-          className="scrollbar-none order-last -mx-1 w-full overflow-x-auto lg:order-2 lg:mx-0 lg:w-auto"
+          className="scrollbar-none order-last -mx-1 -my-1 w-full overflow-x-auto py-1 lg:order-2 lg:mx-0 lg:w-auto"
         >
           <ul className="flex gap-1">
             {NAV_ITEMS.map(({ to, key, icon: Icon, end, showCount }) => (
@@ -49,7 +53,7 @@ const Header = () => {
                   <Icon aria-hidden="true" />
                   {t(key)}
                   {showCount && count > 0 && (
-                    <span className="rounded-full bg-accent-strong/20 px-1.5 text-[11px] font-semibold leading-5 text-accent">
+                    <span className="rounded-full bg-accent-strong/20 px-1.5 text-[11px] font-semibold leading-5 tabular-nums text-accent">
                       {count}
                     </span>
                   )}

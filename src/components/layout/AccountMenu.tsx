@@ -15,11 +15,11 @@ const Avatar = ({ account, size = "h-11 w-11" }: { account: Account; size?: stri
       src={account.avatarUrl}
       alt=""
       onError={() => setBroken(true)}
-      className={`${size} rounded-full object-cover`}
+      className={`img-outline ${size} rounded-full object-cover`}
     />
   ) : (
     <span
-      className={`${size} flex items-center justify-center rounded-full bg-accent-strong font-semibold text-white`}
+      className={`${size} flex items-center justify-center rounded-full bg-accent-strong font-semibold text-ink`}
       aria-hidden="true"
     >
       {initial}

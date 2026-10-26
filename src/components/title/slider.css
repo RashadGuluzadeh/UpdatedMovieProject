@@ -128,7 +128,9 @@
 /* Dots */
 .slick-dots {
   position: absolute;
-  bottom: -32px;
+  /* The buttons are 32px tall (a real touch target) around a 4px bar, so the
+     list sits 9px lower in its box than the old 14px buttons did. */
+  bottom: -41px;
   /* react-slick sets an inline display:block on the dots list */
   display: flex !important;
   justify-content: center;
@@ -140,9 +142,9 @@
 }
 .slick-dots li button {
   display: block;
-  width: 20px;
-  height: 14px;
-  padding: 5px 0;
+  width: 28px;
+  height: 32px;
+  padding: 14px 0;
   border: 0;
   background: transparent;
   font-size: 0;
@@ -152,19 +154,23 @@
 .slick-dots li button:before {
   display: block;
   content: "";
-  width: 100%;
+  width: 20px;
   height: 4px;
+  margin: 0 auto;
   border-radius: 9999px;
   background-color: #2a2f3a;
   transition: background-color 0.3s ease, width 0.3s ease;
 }
-.slick-dots li button:hover:before {
-  background-color: #6b7385;
+@media (hover: hover) {
+  .slick-dots li button:hover:before {
+    background-color: #818a9c;
+  }
 }
 .slick-dots li.slick-active button {
-  width: 32px;
+  width: 40px;
 }
 .slick-dots li.slick-active button:before {
+  width: 32px;
   background-color: #8b95f7;
 }
 

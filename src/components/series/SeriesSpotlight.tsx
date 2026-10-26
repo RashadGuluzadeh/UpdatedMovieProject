@@ -1,8 +1,7 @@
 import { useMemo, useState } from "react";
 import { useAppDispatch } from "../../state/hooks";
 import Skeleton from "react-loading-skeleton";
-import { BsFillStarFill } from "react-icons/bs";
-import { RiInformationLine } from "react-icons/ri";
+import { RiInformationLine, RiStarFill } from "react-icons/ri";
 import { posterUrl } from "../../api/tmdb";
 import { openTitle } from "../../state/detailsSlice";
 import { useSeriesSpotlight } from "../../hooks/useSeriesSpotlight";
@@ -17,8 +16,8 @@ import type { EpisodeWithDelta } from "../../types";
 
 const Stat = ({ label, value, hint }: { label: string; value: string; hint?: string }) => (
   <div className="rounded-xl border border-line/60 bg-surface p-4">
-    <p className="text-xs uppercase tracking-wider text-subtle">{label}</p>
-    <p className="mt-1 font-display text-2xl font-semibold text-fg">{value}</p>
+    <p className="text-sm text-subtle">{label}</p>
+    <p className="mt-1 font-display text-2xl font-semibold tabular-nums text-fg">{value}</p>
     {hint && <p className="mt-0.5 truncate text-xs text-muted">{hint}</p>}
   </div>
 );
@@ -51,7 +50,7 @@ const SeriesSpotlight = () => {
 
   const heading = (
     <div className="mb-6">
-      <p className="text-xs uppercase tracking-wider text-accent">{t("spotlight.eyebrow")}</p>
+      <p className="text-sm font-medium text-accent">{t("spotlight.eyebrow")}</p>
       <h2 id="spotlight-heading" className="mt-1 font-display text-2xl font-semibold sm:text-3xl">
         {t("spotlight.title")}
       </h2>
@@ -103,9 +102,9 @@ const SeriesSpotlight = () => {
         <div className="flex min-h-[360px] flex-col justify-end p-6 sm:min-h-[460px] sm:p-10">
           <div className="max-w-2xl">
             <h3 className="font-display text-4xl font-semibold leading-tight sm:text-5xl">{show.title}</h3>
-            <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted">
+            <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm tabular-nums text-muted">
               <span className="flex items-center gap-1.5 text-fg">
-                <BsFillStarFill className="text-star" aria-hidden="true" />
+                <RiStarFill className="text-star" aria-hidden="true" />
                 {formatRating(show.vote_average)}
               </span>
               {formatYear(show.release_date) && <span>{formatYear(show.release_date)}</span>}
@@ -177,11 +176,13 @@ const SeriesSpotlight = () => {
                 aria-pressed={s.number === activeSeason}
                 onClick={() => setSelectedSeason(s.number)}
                 className={`btn shrink-0 rounded-full px-3 py-1.5 ${
-                  s.number === activeSeason ? "bg-accent-strong text-white" : "bg-raised text-muted hover:text-fg"
+                  s.number === activeSeason ? "bg-accent-strong text-ink" : "bg-raised text-muted hover:text-fg"
                 }`}
               >
                 {t("spotlight.season", { n: s.number })}
-                <span className="text-xs opacity-75">★ {formatRating(seasonAverage(s.number))}</span>
+                <span className="inline-flex items-center gap-1 text-xs tabular-nums opacity-75">
+                  <RiStarFill aria-hidden="true" /> {formatRating(seasonAverage(s.number))}
+                </span>
               </button>
             ))}
           </div>

@@ -84,7 +84,7 @@ const LanguageSwitcher = () => {
                 tabIndex={-1}
                 lang={l.code}
                 onClick={() => choose(l.code)}
-                className="flex cursor-pointer items-center gap-3 px-3 py-2 text-sm transition-colors hover:bg-raised focus:bg-raised focus:outline-none"
+                className="flex min-h-10 cursor-pointer items-center gap-3 px-3 py-2 text-sm transition-colors hover:bg-raised focus:bg-raised focus:outline-none"
               >
                 <span className="w-7 font-semibold text-fg">{l.code.toUpperCase()}</span>
                 <span className="flex-1 text-muted">{l.label}</span>

@@ -11,7 +11,7 @@ const BROWSE_LINKS: { to: string; key: TranslationKey; icon: IconType }[] = [
 ];
 
 const Heading = ({ children }: { children: ReactNode }) => (
-  <h2 className="mb-4 text-xs font-semibold uppercase tracking-wider text-subtle">{children}</h2>
+  <h2 className="mb-3 text-sm font-medium text-muted">{children}</h2>
 );
 
 // Fills a translated sentence like "Data provided by {tmdb}." with a link.
@@ -52,12 +52,12 @@ const Footer = () => {
         {/* Browse */}
         <nav aria-label={t("footer.browse")}>
           <Heading>{t("footer.browse")}</Heading>
-          <ul className="space-y-3">
+          <ul>
             {BROWSE_LINKS.map(({ to, key, icon: Icon }) => (
               <li key={to}>
                 <Link
                   to={to}
-                  className="group inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-fg"
+                  className="group inline-flex min-h-10 items-center gap-2 text-sm text-muted transition-colors hover:text-fg"
                 >
                   <Icon className="text-subtle transition-colors group-hover:text-accent" aria-hidden="true" />
                   {t(key)}
@@ -70,7 +70,7 @@ const Footer = () => {
         {/* Language */}
         <div>
           <Heading>{t("footer.language")}</Heading>
-          <ul className="space-y-2">
+          <ul className="space-y-1">
             {LANGUAGES.map((l) => (
               <li key={l.code}>
                 <button
@@ -78,7 +78,7 @@ const Footer = () => {
                   lang={l.code}
                   aria-pressed={l.code === lang}
                   onClick={() => setLang(l.code)}
-                  className={`inline-flex items-center gap-3 rounded-lg px-2 py-1 text-sm transition-colors ${
+                  className={`inline-flex min-h-9 items-center gap-3 rounded-lg px-2 py-1 text-sm transition-colors ${
                     l.code === lang ? "bg-raised text-fg" : "text-muted hover:text-fg"
                   }`}
                 >
@@ -98,7 +98,7 @@ const Footer = () => {
             href="https://www.themoviedb.org/"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 inline-flex items-center gap-2 text-sm text-accent hover:underline"
+            className="mt-2 inline-flex min-h-10 items-center gap-2 text-sm text-accent hover:underline"
           >
             {t("footer.visitTmdb")} <RiExternalLinkLine aria-hidden="true" />
           </a>

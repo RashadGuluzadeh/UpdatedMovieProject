@@ -1,9 +1,7 @@
 import { useCallback, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useAppDispatch, useAppSelector } from "../../state/hooks";
-import { RiCloseLine, RiPlayFill, RiExternalLinkLine } from "react-icons/ri";
-import { AiOutlinePlus, AiOutlineClose } from "react-icons/ai";
-import { BsFillStarFill } from "react-icons/bs";
+import { RiAddLine, RiCloseLine, RiPlayFill, RiExternalLinkLine, RiStarFill } from "react-icons/ri";
 import { posterUrl } from "../../api/tmdb";
 import { closeTitle } from "../../state/detailsSlice";
 import { toggleWatchlist } from "../../state/watchlistSlice";
@@ -87,7 +85,7 @@ const TitleModalContent = ({ item, onClose }: { item: SelectedTitle; onClose: ()
             <img
               src={posterUrl(m.poster_path) ?? noImage}
               alt={t("title.poster", { title: m.title })}
-              className="relative w-28 sm:w-40 aspect-[2/3] shrink-0 rounded-xl object-cover shadow-soft border border-line"
+              className="img-outline relative w-28 sm:w-40 aspect-[2/3] shrink-0 rounded-xl object-cover"
             />
             <div className="flex flex-col justify-end gap-3 min-w-0 sm:pt-28">
               <h2 id={titleId} className="font-display text-2xl sm:text-3xl font-semibold leading-tight">
@@ -97,9 +95,9 @@ const TitleModalContent = ({ item, onClose }: { item: SelectedTitle; onClose: ()
               {details?.tagline && (
                 <p className="text-sm italic text-muted">{details.tagline}</p>
               )}
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted">
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm tabular-nums text-muted">
                 <span className="flex items-center gap-1.5 text-fg">
-                  <BsFillStarFill className="text-star" aria-hidden="true" />
+                  <RiStarFill className="text-star" aria-hidden="true" />
                   {formatRating(m.vote_average)}
                   <span className="text-subtle">{t("title.outOf")}</span>
                 </span>
@@ -130,9 +128,9 @@ const TitleModalContent = ({ item, onClose }: { item: SelectedTitle; onClose: ()
                 onClick={() => dispatch(toggleWatchlist({ ...m, mediaType: item.mediaType }))}
               >
                 {onWatchlist ? (
-                  <><AiOutlineClose aria-hidden="true" /> {t("modal.removeWatchlist")}</>
+                  <><RiCloseLine aria-hidden="true" /> {t("modal.removeWatchlist")}</>
                 ) : (
-                  <><AiOutlinePlus aria-hidden="true" /> {t("modal.addWatchlist")}</>
+                  <><RiAddLine aria-hidden="true" /> {t("modal.addWatchlist")}</>
                 )}
               </button>
             )}
@@ -154,7 +152,7 @@ const TitleModalContent = ({ item, onClose }: { item: SelectedTitle; onClose: ()
           </div>
 
           <section className="mt-8">
-            <h3 className="text-xs uppercase tracking-wider text-subtle">{t("modal.overview")}</h3>
+            <h3 className="text-sm font-medium text-muted">{t("modal.overview")}</h3>
             <p className="mt-2 leading-relaxed text-muted">
               {m.overview || t("title.noOverview")}
             </p>
@@ -172,7 +170,7 @@ const TitleModalContent = ({ item, onClose }: { item: SelectedTitle; onClose: ()
                 <TitleFacts details={details} />
                 {details.cast.length > 0 && (
                   <section className="mt-8">
-                    <h3 className="mb-4 text-xs uppercase tracking-wider text-subtle">{t("modal.topCast")}</h3>
+                    <h3 className="mb-4 text-sm font-medium text-muted">{t("modal.topCast")}</h3>
                     <CastList cast={details.cast} />
                   </section>
                 )}

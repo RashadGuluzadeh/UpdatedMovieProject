@@ -66,7 +66,7 @@ const ShareList = () => {
       }}
       className="space-y-3"
     >
-      <label htmlFor={inputId} className="block text-xs uppercase tracking-wider text-subtle">
+      <label htmlFor={inputId} className="block text-sm text-subtle">
         {t("share.label")}
       </label>
       <input

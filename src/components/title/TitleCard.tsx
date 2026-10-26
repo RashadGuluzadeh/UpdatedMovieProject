@@ -1,5 +1,5 @@
 import { useAppDispatch } from "../../state/hooks";
-import { BsFillStarFill } from "react-icons/bs";
+import { RiStarFill } from "react-icons/ri";
 import { openTitle } from "../../state/detailsSlice";
 import { useI18n } from "../../i18n/context";
 import { posterUrl } from "../../api/tmdb";
@@ -31,7 +31,7 @@ const TitleCard = ({ item, saved = false, locked = false, className = "", index 
         type="button"
         onClick={() => dispatch(openTitle(item))}
         aria-label={t("card.details", { title })}
-        className="flex w-full flex-col overflow-hidden rounded-xl border border-line/60 bg-surface text-left shadow-soft transition duration-300 ease-out hover:border-line motion-safe:hover:-translate-y-1"
+        className="flex w-full flex-col overflow-hidden rounded-xl border border-line/60 bg-surface text-left transition duration-300 ease-out hover:border-line motion-safe:hover:-translate-y-1 motion-safe:hover:shadow-soft"
       >
         <div className="relative aspect-[2/3] overflow-hidden bg-raised">
           <FadeImg
@@ -41,8 +41,8 @@ const TitleCard = ({ item, saved = false, locked = false, className = "", index 
             loading="lazy"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-          <span className="absolute bottom-2 left-2 flex items-center gap-1 rounded-full bg-ink/75 px-2 py-0.5 text-xs text-fg backdrop-blur">
-            <BsFillStarFill className="text-star" aria-hidden="true" />
+          <span className="absolute bottom-2 left-2 flex items-center gap-1 rounded-full bg-ink/75 px-2 py-0.5 text-xs tabular-nums text-fg backdrop-blur">
+            <RiStarFill className="text-star" aria-hidden="true" />
             {formatRating(vote_average)}
           </span>
         </div>
@@ -51,7 +51,7 @@ const TitleCard = ({ item, saved = false, locked = false, className = "", index 
           <h3 className="line-clamp-2 h-10 text-sm font-medium leading-5 text-fg" title={title}>
             {title}
           </h3>
-          <p className="mt-1 text-xs text-subtle">{formatYear(release_date) || "—"}</p>
+          <p className="mt-1 text-xs tabular-nums text-subtle">{formatYear(release_date) || "—"}</p>
         </div>
       </button>
       {item.mediaType === "movie" && (

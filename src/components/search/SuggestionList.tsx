@@ -1,7 +1,6 @@
 import { Fragment } from "react";
 import Skeleton from "react-loading-skeleton";
-import { RiArrowRightLine, RiArrowGoBackLine } from "react-icons/ri";
-import { BsFillStarFill } from "react-icons/bs";
+import { RiArrowRightLine, RiArrowGoBackLine, RiStarFill } from "react-icons/ri";
 import { posterUrl } from "../../api/tmdb";
 import { splitMatch } from "../../utils/search";
 import { formatRating, formatYear } from "../../utils/format";
@@ -96,16 +95,16 @@ const SuggestionList = ({
             <img
               src={posterUrl(item.poster_path, "w92") ?? noImage}
               alt=""
-              className="h-[54px] w-9 shrink-0 rounded bg-raised object-cover"
+              className="img-outline h-[54px] w-9 shrink-0 rounded bg-raised object-cover"
             />
             <div className="min-w-0 flex-1">
               <p className="truncate text-sm text-fg">
                 <Highlight text={item.title} query={query} />
               </p>
-              <p className="mt-0.5 flex items-center gap-2 text-xs text-subtle">
+              <p className="mt-0.5 flex items-center gap-2 text-xs tabular-nums text-subtle">
                 {formatYear(item.release_date) || "—"}
                 <span className="flex items-center gap-1">
-                  <BsFillStarFill className="text-star" aria-hidden="true" />
+                  <RiStarFill className="text-star" aria-hidden="true" />
                   {formatRating(item.vote_average)}
                 </span>
               </p>

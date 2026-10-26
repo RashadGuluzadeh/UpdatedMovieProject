@@ -11,12 +11,12 @@ const EpisodeList = ({ episodes, label }: { episodes: EpisodeWithDelta[]; label:
   <ol aria-label={label} className="divide-y divide-line/60 motion-safe:animate-fade-in">
     {episodes.map((e) => (
       <li key={e.id} className="grid grid-cols-[3.5rem_1fr_auto] items-center gap-3 py-2.5 sm:grid-cols-[4rem_1fr_7rem_6rem_4rem]">
-        <span className="text-xs font-medium text-subtle">E{String(e.number).padStart(2, "0")}</span>
+        <span className="text-xs font-medium tabular-nums text-subtle">E{String(e.number).padStart(2, "0")}</span>
         <span className="min-w-0">
           <span className="block truncate text-sm text-fg">{e.name}</span>
-          <span className="block text-xs text-subtle sm:hidden">{formatDate(e.airDate, locale)}</span>
+          <span className="block text-xs tabular-nums text-subtle sm:hidden">{formatDate(e.airDate, locale)}</span>
         </span>
-        <span className="hidden text-xs text-subtle sm:block">{formatDate(e.airDate, locale)}</span>
+        <span className="hidden text-xs tabular-nums text-subtle sm:block">{formatDate(e.airDate, locale)}</span>
         {/* Rating with a small bar on a 0–10 scale */}
         <span className="flex items-center gap-2 justify-self-end sm:justify-self-stretch">
           <span className="hidden h-1.5 flex-1 overflow-hidden rounded-full bg-raised sm:block" aria-hidden="true">

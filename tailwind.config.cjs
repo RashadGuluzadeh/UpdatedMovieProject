@@ -3,6 +3,9 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
+  // hover: styles only apply where the device can really hover, so a tap on
+  // a phone doesn't leave a card lifted or a button highlighted.
+  future: { hoverOnlyWhenSupported: true },
   theme: {
     extend: {
       // Soft, low-glare dark palette: no pure black or pure white,
@@ -14,7 +17,7 @@ module.exports = {
         line: "#2a2f3a",       // borders, dividers
         fg: "#e4e6eb",         // primary text
         muted: "#9ba3b4",      // secondary text
-        subtle: "#6b7385",     // hints, placeholders
+        subtle: "#818a9c",     // hints, placeholders (4.5:1 or more on ink, surface and raised)
         accent: {
           DEFAULT: "#8b95f7",  // soft periwinkle
           strong: "#717ce8",

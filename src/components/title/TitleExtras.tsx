@@ -11,7 +11,7 @@ import type { CastMember, TitleDetails } from "../../types";
 const Fact = ({ label, value }: { label: string; value: string | number | null | undefined }) =>
   value ? (
     <div>
-      <dt className="text-xs uppercase tracking-wider text-subtle">{label}</dt>
+      <dt className="text-sm text-subtle">{label}</dt>
       <dd className="mt-1 text-sm text-fg">{value}</dd>
     </div>
   ) : null;
@@ -24,7 +24,7 @@ export const CastList = ({ cast }: { cast: CastMember[] }) => (
           src={posterUrl(person.profile_path, "w185") ?? noImage}
           alt=""
           loading="lazy"
-          className="h-12 w-12 shrink-0 rounded-full object-cover bg-raised"
+          className="img-outline h-12 w-12 shrink-0 rounded-full object-cover bg-raised"
         />
         <div className="min-w-0">
           <p className="truncate text-sm text-fg">{person.name}</p>

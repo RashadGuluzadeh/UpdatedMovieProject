@@ -88,7 +88,7 @@ const SearchBox = () => {
       }}
     >
       <form
-        className="flex items-center gap-2 rounded-full border border-line bg-raised py-1 pl-4 pr-1 transition-colors focus-within:border-accent/60"
+        className="flex items-center gap-2 rounded-full border border-line bg-raised py-1 pl-4 pr-1 transition-[border-color,box-shadow] focus-within:border-accent/70 focus-within:ring-2 focus-within:ring-accent/25"
         role="search"
         onSubmit={(e) => {
           e.preventDefault();

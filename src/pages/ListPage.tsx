@@ -29,7 +29,7 @@ const SharedList = ({ id }: { id: string }) => {
   return (
     <>
       <header className="mb-8">
-        <p className="text-xs uppercase tracking-wider text-subtle">{t("list.shared")}</p>
+        <p className="text-sm text-subtle">{t("list.shared")}</p>
         <h1 className="mt-1 break-words font-display text-3xl font-semibold sm:text-4xl">
           {state.title}
         </h1>

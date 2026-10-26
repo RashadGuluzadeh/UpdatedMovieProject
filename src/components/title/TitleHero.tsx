@@ -1,5 +1,4 @@
-import { BsFillStarFill } from "react-icons/bs";
-import { RiInformationLine } from "react-icons/ri";
+import { RiInformationLine, RiStarFill } from "react-icons/ri";
 import { posterUrl } from "../../api/tmdb";
 import { formatDate, formatRating } from "../../utils/format";
 import noImage from "../../assets/no-image.png";
@@ -33,7 +32,7 @@ const TitleHero = ({ item, className = "", eagerImage = false, onDetails }: Titl
 
       <div className="flex flex-col gap-6 p-5 sm:p-8 md:flex-row md:gap-10">
         <img
-          className="aspect-[2/3] w-40 shrink-0 self-center rounded-xl border border-line object-cover shadow-soft sm:w-52 md:self-start"
+          className="img-outline aspect-[2/3] w-40 shrink-0 self-center rounded-xl object-cover sm:w-52 md:self-start"
           src={posterUrl(item.poster_path, "w500") ?? noImage}
           alt={t("title.poster", { title: item.title })}
           loading={eagerImage ? "eager" : "lazy"}
@@ -42,12 +41,12 @@ const TitleHero = ({ item, className = "", eagerImage = false, onDetails }: Titl
           <h2 className="font-display text-2xl font-semibold leading-tight sm:text-4xl">
             {item.title}
           </h2>
-          <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted">
+          <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm tabular-nums text-muted">
             <span
               className="flex items-center gap-1.5 text-fg"
               aria-label={t("title.rating", { value: formatRating(item.vote_average) })}
             >
-              <BsFillStarFill className="text-star" aria-hidden="true" />
+              <RiStarFill className="text-star" aria-hidden="true" />
               {formatRating(item.vote_average)}
             </span>
             <span>{formatDate(item.release_date, locale)}</span>

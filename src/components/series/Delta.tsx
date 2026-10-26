@@ -10,7 +10,7 @@ const Delta = ({ value }: { value: number | null }) => {
   }
   const up = value > 0;
   return (
-    <span className="inline-flex items-center text-xs text-muted">
+    <span className="inline-flex items-center text-xs tabular-nums text-muted">
       {up ? (
         <RiArrowUpSLine className="text-base text-rise" aria-hidden="true" />
       ) : (

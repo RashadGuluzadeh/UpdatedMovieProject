@@ -7,8 +7,22 @@
         color-scheme: dark;
         scroll-behavior: smooth;
     }
+    /* Keeps keyboard focus from scrolling in underneath the sticky header
+       (it is only sticky from lg up). */
+    @media (min-width: 1024px) {
+        html {
+            scroll-padding-top: 5rem;
+        }
+    }
     body {
         @apply bg-ink text-fg font-sans antialiased;
+    }
+    /* Balanced headings and no one-word last lines in paragraphs. */
+    h1, h2, h3 {
+        text-wrap: balance;
+    }
+    p {
+        text-wrap: pretty;
     }
     ::selection {
         @apply bg-accent/30;
@@ -20,19 +34,26 @@
 
 @layer components {
     .btn {
-        @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium
-               transition duration-200 active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-50
+        @apply inline-flex min-h-10 items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium
+               transition duration-200 active:scale-[0.96] disabled:cursor-not-allowed disabled:opacity-50
                disabled:active:scale-100;
     }
+    /* Dark text on the periwinkle fill: 5.2:1 at rest and 7:1 on hover.
+       White was 3.7:1 and fell to 2.7:1 on hover. */
     .btn-primary {
-        @apply btn bg-accent-strong text-white hover:bg-accent;
+        @apply btn bg-accent-strong text-ink hover:bg-accent;
     }
     .btn-ghost {
         @apply btn bg-raised text-fg hover:bg-line;
     }
     .icon-btn {
-        @apply inline-flex items-center justify-center rounded-full transition-colors duration-200
-               disabled:cursor-not-allowed disabled:opacity-60;
+        @apply inline-flex items-center justify-center rounded-full transition duration-200
+               active:scale-[0.96] disabled:cursor-not-allowed disabled:opacity-60 disabled:active:scale-100;
+    }
+    /* A 1px white-at-10% edge on poster art. Pure white, not a tint, so it
+       doesn't pick up the surface colour and read as dirt on dark posters. */
+    .img-outline {
+        @apply outline outline-1 -outline-offset-1 outline-white/10;
     }
     .scrollbar-none {
         scrollbar-width: none;

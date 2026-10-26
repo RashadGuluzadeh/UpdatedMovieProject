@@ -53,7 +53,7 @@ const TitleRow = ({ id, title, subtitle, status, items }: TitleRowProps) => {
             type="button"
             onClick={() => scrollBy(-1)}
             aria-label={t("rows.scrollLeft", { title })}
-            className="icon-btn h-9 w-9 border border-line bg-raised text-xl text-muted hover:text-fg"
+            className="icon-btn h-10 w-10 border border-line bg-raised text-xl text-muted hover:text-fg"
           >
             <RiArrowLeftSLine aria-hidden="true" />
           </button>
@@ -61,7 +61,7 @@ const TitleRow = ({ id, title, subtitle, status, items }: TitleRowProps) => {
             type="button"
             onClick={() => scrollBy(1)}
             aria-label={t("rows.scrollRight", { title })}
-            className="icon-btn h-9 w-9 border border-line bg-raised text-xl text-muted hover:text-fg"
+            className="icon-btn h-10 w-10 border border-line bg-raised text-xl text-muted hover:text-fg"
           >
             <RiArrowRightSLine aria-hidden="true" />
           </button>
